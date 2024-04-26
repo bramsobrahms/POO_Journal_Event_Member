@@ -11,14 +11,18 @@ public class Member extends Person{
     private Status status;
     private ArrayList<Event> events;
 
-    public Member(String firstname, String login, String password, String email, double money, Status status) {
-        super(firstname);
+    public Member(String firstname, String lastname, char gender, String login, String password, String email) {
+        super(firstname, lastname, gender);
         this.login = login;
         this.password = password;
         this.email = email;
-        this.money = money;
-        this.status = status;
+        this.money = 0d;
+        this.status = Status.MEMBER;
         this.events = new ArrayList<>();
+    }
+
+    public Member(String firstname, String lastname, char gender, String login) {
+        this(firstname, lastname, gender, login, null, null );
     }
 
     public String getLogin() {

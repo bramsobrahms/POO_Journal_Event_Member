@@ -34,4 +34,17 @@ class EventTest {
         assertTrue(event instanceof Registrable, "Event doit implémenter l'interface Registrable");
     }
 
+    @Test
+    void testInsufficiantBalanceException() {
+
+        Member member = new Member("Bob", "Sull", 'h', "bob");
+        member.setMoney(10);
+
+        Event event = new Event("Concert", "2023-04-24T18:30", 50d);
+        event.register(member);
+
+        assertTrue(event.getMembers().contains(member));
+        assertTrue(member.getEvents().contains(event));
+    }
+
 }
