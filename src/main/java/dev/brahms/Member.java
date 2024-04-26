@@ -2,7 +2,7 @@ package dev.brahms;
 
 import java.util.ArrayList;
 
-public class Member {
+public class Member extends Person{
 
     private String login;
     private String password;
@@ -11,7 +11,8 @@ public class Member {
     private Status status;
     private ArrayList<Event> events;
 
-    public Member(String login, String password, String email, double money, Status status) {
+    public Member(String firstname, String login, String password, String email, double money, Status status) {
+        super(firstname);
         this.login = login;
         this.password = password;
         this.email = email;

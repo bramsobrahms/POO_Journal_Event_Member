@@ -12,6 +12,10 @@ public class Person {
         this.gender = gender;
     }
 
+    public Person(String firstname) {
+        this.firstname = firstname;
+    }
+
     public String getFirstname() {
         return firstname;
     }
@@ -35,5 +39,5 @@ public class Person {
     public void setGender(char gender) {
         this.gender = gender;
     }
-    
+
 }
