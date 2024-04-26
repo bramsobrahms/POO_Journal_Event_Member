@@ -57,11 +57,13 @@ public class MyUtilities {
 
     private static void configureXS(XStream xstream) {
         xstream.addPermission(AnyTypePermission.ANY);
-        xstream.alias("member", Member.class);
-        xstream.alias("event", Event.class);
-        xstream.aliasField("firstname", Member.class, "prenom");
-        xstream.aliasField("lastname", Member.class, "nom");
-        xstream.aliasField("status", Status.class, "statut");
-        xstream.aliasField("events", Member.class, "évenements");
+        xstream.alias("Membre", Member.class);
+        xstream.aliasField("prénom", Member.class, "firstname");
+        xstream.aliasField("nom", Member.class, "lastname");
+        xstream.aliasField("genre", Member.class, "gender");
+        xstream.aliasField("login", Member.class, "login");
+        xstream.aliasField("somme", Member.class, "money");
+        xstream.aliasField("statut", Status.class, "status");
+        xstream.aliasField("Évenements", Member.class, "events");
     }
 }

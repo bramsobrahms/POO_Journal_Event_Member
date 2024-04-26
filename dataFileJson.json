@@ -1,11 +1,11 @@
-{"member": {
-  "firstname": "Bob",
-  "lastname": "Sully",
-  "gender": "h",
-  "login": "bob",
-  "money": 0.0,
+{"Membre": {
+  "prénom": "Julien",
+  "nom": "Doré",
+  "genre": "h",
+  "login": "JD",
+  "somme": 0.0,
   "status": "VIP",
-  "events": [
+  "Évenements": [
     {
       "text": "Concert",
       "dateEvent": "2023-04-24T18:30:00",
