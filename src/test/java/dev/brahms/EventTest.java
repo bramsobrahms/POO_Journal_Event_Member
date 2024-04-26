@@ -17,4 +17,13 @@ class EventTest {
 
     }
 
+    @Test
+    void testConstructorWithoutPrice() {
+        Event event = new Event("Party", "2022-04-24T18:30");
+
+        assertEquals("Party", event.getText());
+        assertEquals("2022-04-24T18:30", event.getDateEvent().toString());
+        assertEquals(0d, event.getPrice());
+    }
+
 }
