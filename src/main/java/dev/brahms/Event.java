@@ -1,5 +1,7 @@
 package dev.brahms;
 
+import dev.brahms.Exception.InsufficientBalanceException;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -60,6 +62,19 @@ public class Event implements Registrable{
 
     @Override
     public void register(Person p) {
+
+        if( !(p instanceof Member)) {
+            throw new InsufficientBalanceException("This person doesn't have a member");
+        }
+
+        Member member = (Member) p;
+
+        if( member.getMoney() < this.price) {
+            throw new InsufficientBalanceException("This person doesn't have enough money");
+        }
+
+        this.members.add(member);
+        member.getEvents().add(this);
 
     }
 }
