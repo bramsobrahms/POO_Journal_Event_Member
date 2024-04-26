@@ -26,4 +26,12 @@ class EventTest {
         assertEquals(0d, event.getPrice());
     }
 
+    @Test
+    void testRegistrableInterface() {
+
+        Event event = new Event();
+
+        assertTrue(event instanceof Registrable, "Event doit implémenter l'interface Registrable");
+    }
+
 }
