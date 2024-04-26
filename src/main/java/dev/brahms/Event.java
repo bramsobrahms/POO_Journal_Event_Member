@@ -10,16 +10,16 @@ public class Event implements Registrable{
     private double price;
     private ArrayList<Member> members;
 
-    public Event(String text, LocalDateTime dateEvent, double price) {
+    public Event(String text, String dateEvent, double price) {
         this.text = text;
-        this.dateEvent = dateEvent;
+        this.dateEvent = LocalDateTime.parse(dateEvent);
         this.price = price;
         this.members = new ArrayList<>();
     }
 
-    public Event(String text, LocalDateTime dateEvent) {
+    public Event(String text, String dateEvent) {
         this.text = text;
-        this.dateEvent = dateEvent;
+        this.dateEvent = LocalDateTime.parse(dateEvent);
         this.price = 0d;
         this.members = new ArrayList<>();
     }
