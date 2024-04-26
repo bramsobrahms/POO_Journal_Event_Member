@@ -3,7 +3,7 @@ package dev.brahms;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Event {
+public class Event implements Registrable{
 
     private String text;
     private LocalDateTime dateEvent;
@@ -47,5 +47,10 @@ public class Event {
 
     public void setMembers(ArrayList<Member> members) {
         this.members = members;
+    }
+
+    @Override
+    public void register(Person p) {
+
     }
 }
