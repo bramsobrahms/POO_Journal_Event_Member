@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.thoughtworks.xstream:xstream-distribution:1.4.20'
+    implementation group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.20'
     implementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.11.0-M1'
 //    testImplementation platform('org.junit:junit-bom:5.10.0')
 //    testImplementation 'org.junit.jupiter:junit-jupiter'
