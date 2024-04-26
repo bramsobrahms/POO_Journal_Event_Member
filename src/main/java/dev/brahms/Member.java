@@ -1,6 +1,7 @@
 package dev.brahms;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Member extends Person{
 
@@ -75,13 +76,18 @@ public class Member extends Person{
 
     @Override
     public String toString() {
-        return "Member{" +
-                "login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", money=" + money +
-                ", status=" + status +
-                ", events=" + events +
-                '}';
+
+        StringBuilder strBuild = new StringBuilder();
+
+        strBuild.append(super.getFirstname()).append(" ")
+                .append(super.getLastname()).append(" - ")
+                .append(status).append("\n");
+
+        Iterator<Event> iterEvent = events.iterator();
+        while (iterEvent.hasNext()) {
+            Event event = iterEvent.next();
+            strBuild.append("- ").append(event.getText()).append("\n");
+        }
+        return strBuild.toString();
     }
 }
