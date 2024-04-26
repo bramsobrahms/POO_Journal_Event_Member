@@ -3,7 +3,6 @@ package dev.brahms.Serialize;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JsonHierarchicalStreamDriver;
 import com.thoughtworks.xstream.security.AnyTypePermission;
-import dev.brahms.Event;
 import dev.brahms.Member;
 import dev.brahms.Status;
 
@@ -13,16 +12,15 @@ public class MyUtilities {
 
     public static Member loadMemberFromFile(String filename) {
 
-        // Crée un objet File pour le fichier JSON
         File file = new File(filename);
         try {
-            // Crée un objet FileReader pour lire à partir du fichier
+            // Create FileReader for read
             FileReader reader = new FileReader(file);
-            // Crée un objet XStream avec le pilote JSON
+            // Create an object with Json pilot
             XStream xstream = new XStream(new JsonHierarchicalStreamDriver());
-            // Configure XStream pour la désérialisation
+            // Config XStream for deserialize
             configureXS(xstream);
-            // Désérialise le membre à partir du fichier et le renvoie
+            // deserialize member from file
             return (Member) xstream.fromXML(reader);
         } catch (IOException e) {
             e.printStackTrace();
