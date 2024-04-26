@@ -17,6 +17,13 @@ public class Event implements Registrable{
         this.members = new ArrayList<>();
     }
 
+    public Event(String text, LocalDateTime dateEvent) {
+        this.text = text;
+        this.dateEvent = dateEvent;
+        this.price = 0d;
+        this.members = new ArrayList<>();
+    }
+
     public String getText() {
         return text;
     }
