@@ -1,93 +1,61 @@
 package dev.brahms.Serialize;
 
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
+import com.thoughtworks.xstream.io.json.JsonHierarchicalStreamDriver;
 import com.thoughtworks.xstream.security.AnyTypePermission;
+import dev.brahms.Event;
 import dev.brahms.Member;
+import dev.brahms.Status;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class MyUtilities {
 
-    public static String readFile(String fileName) {
+   public static Member loadMemberFromFile(String filename) {
 
-        StringBuilder strBuild = new StringBuilder();
-        Path path = Paths.get(fileName);
-        List<String> lines = null;
+       File file = new File(filename);
 
-        try {
-            lines = Files.readAllLines(path);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+       XStream xstream = new XStream(new JsonHierarchicalStreamDriver());
 
-        assert lines != null;
-        for(String line : lines) {
-            strBuild.append(line);
-            strBuild.append("\n");
-        }
+       configureXS(xstream);
 
-        return strBuild.toString();
-    }
+       return (Member) xstream.fromXML(file);
+   }
 
+   public static void saveMemberToJsonFile(Member member, String filename) {
 
-    public static void writeToFile(String formattedString, String fileName) {
+       File file = new File(filename);
+       FileWriter fw = null;
 
-        Path path = Paths.get(fileName);
-        List<String> lines = new ArrayList<>();
+       XStream xstream = new XStream(new JsonHierarchicalStreamDriver());
 
-        lines.add(formattedString);
+       configureXS(xstream);
 
-        try{
-            Files.write(path, lines);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+       try {
+           fw = new FileWriter(file);
+           xstream.toXML(member, fw);
+       } catch (IOException e) {
+           e.printStackTrace();
+       } finally {
+           if(fw != null) {
+               try {
+                   fw.close();
+               } catch (IOException e) {
+                   e.printStackTrace();
+               }
+           }
+       }
+   }
 
-    }
-
-    public static String convertSiteToJSONString(Site site) {
-
-        String jsonString = null;
-
-        XStream xstream = new XStream(new JettisonMappedXmlDriver());
-
-        configJsonXStream(xstream);
-
-        jsonString = xstream.toXML(site);
-
-        return jsonString;
-    }
-
-    public static Site convertJSONStringToSite(String jsonString) {
-
-        Site site = null;
-
-        XStream xstream = new XStream(new JettisonMappedXmlDriver());
-
-        configJsonXStream(xstream);
-
-        site = (Site) xstream.fromXML(jsonString);
-
-        return site;
-    }
-
-    private static void configJsonXStream(XStream xstream) {
-
-        xstream.addPermission(AnyTypePermission.ANY);
-        xstream.alias("member", Member.class);
-        xstream.alias("firstname", Member.class);
-        xstream.aliasField("firstname", Member.class, "prenom");
-        xstream.alias("lastname", Member.class);
-        xstream.aliasField("lastname", Member.class, "nom");
-        xstream.alias("status", Member.class);
-        xstream.aliasField("status", Member.class, "statut");
-
+    private static void configureXS(XStream xstream) {
+       xstream.addPermission(AnyTypePermission.ANY);
+       xstream.alias("member", Member.class);
+       xstream.alias("event", Event.class);
+       xstream.aliasField("firstname", Member.class, "prenom");
+       xstream.aliasField("lastname", Member.class, "nom");
+       xstream.aliasField("status", Status.class, "statut");
+       xstream.aliasField("events", Member.class, "évenements");
     }
 }

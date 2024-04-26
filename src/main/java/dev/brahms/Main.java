@@ -1,17 +1,28 @@
 package dev.brahms;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
+import dev.brahms.Serialize.MyUtilities;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        Member member = new Member("Bob", "Sully", 'h', "bob");
+        Status status_vip = Status.VIP;
+
+        Event event1 = new Event("Concert", "2023-04-24T18:30", 30d);
+        Event event2 = new Event("Party", "2022-04-24T18:30");
+
+        member.getEvents().add(event1);
+        member.getEvents().add(event2);
+        member.setStatus(status_vip);
+        System.out.println(member);
+
+        // Saves the details of the Member to JSON file.
+        MyUtilities.saveMemberToJsonFile(member, "dataFileJson.json");
+
+        // Restores the details of the Member from the JSON file.
+        Member restore = MyUtilities.loadMemberFromFile("dataFileJson.json");
+        System.out.println(restore);
+
     }
 }

@@ -1,0 +1,22 @@
+{"member": {
+  "firstname": "Bob",
+  "lastname": "Sully",
+  "gender": "h",
+  "login": "bob",
+  "money": 0.0,
+  "status": "VIP",
+  "events": [
+    {
+      "text": "Concert",
+      "dateEvent": "2023-04-24T18:30:00",
+      "price": 30.0,
+      "members": []
+    },
+    {
+      "text": "Party",
+      "dateEvent": "2022-04-24T18:30:00",
+      "price": 0.0,
+      "members": []
+    }
+  ]
+}}
