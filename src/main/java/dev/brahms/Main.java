@@ -21,8 +21,8 @@ public class Main {
         MyUtilities.saveMemberToJsonFile(member, "dataFileJson.json");
 
         // Restores the details of the Member from the JSON file.
-        Member restore = MyUtilities.loadMemberFromFile("dataFileJson.json");
-        System.out.println(restore);
+        //Member restore = MyUtilities.loadMemberFromFile("dataFileJson.json");
+        //System.out.println(restore);
 
     }
 }
